@@ -19,8 +19,8 @@ class User extends Authenticatable
      */
     protected $guarded = ['id'];
 
-    public function grade()
+    public function score()
     {
-        return $this->hasOne(Grade::class);
+        return $this->hasOne(Score::class);
     }
 }

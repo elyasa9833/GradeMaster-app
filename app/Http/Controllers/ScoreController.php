@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grade;
+use App\Models\User;
+use App\Models\Score;
 use Illuminate\Http\Request;
 
-class GradeController extends Controller
+class ScoreController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('grade.index', [
+        return view('score.index', [
             'title' => 'Nilai',
-            'grades' => Grade::get('user')->get()
+            'scores' => Score::get('user')->get()
         ]);
     }
 
@@ -23,7 +24,10 @@ class GradeController extends Controller
      */
     public function create()
     {
-        // 
+        return view('score.addScore', [
+            'title' => 'Nilai',
+            'students' => User::all()
+        ]);
     }
 
     /**
@@ -31,16 +35,16 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        $inputGrade = $request->validate([
+        $inputScore = $request->validate([
             'matematika' => 'required',
             'kimia' => 'required',
             'fisika' => 'required',
             'biologi' => 'required'
         ]);
 
-        $inputGrade['user_id'] = auth()->user()->id;
+        $inputScore['user_id'] = auth()->user()->id;
 
-        Grade::create($inputGrade);
+        Score::create($inputScore);
 
         return redirect()->back();
     }
@@ -48,7 +52,7 @@ class GradeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Grade $grade)
+    public function show(Score $score)
     {
         //
     }
@@ -56,9 +60,9 @@ class GradeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Grade $grade)
+    public function edit(Score $score)
     {
-        return view('grade.edit', [
+        return view('score.edit', [
             'title' => 'Nilai'
         ]);
     }
@@ -68,13 +72,13 @@ class GradeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateGrade = $request->validate([
+        $updateScore = $request->validate([
             'matematika' => 'required',
             'kimia' => 'required',
             'fisika' => 'required',
             'biologi' => 'required'
         ]);
-        Grade::where('id', $id)->update($updateGrade);
+        Score::where('id', $id)->update($updateScore);
 
         return redirect()->back();
     }
@@ -82,9 +86,9 @@ class GradeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Grade $grade)
+    public function destroy(Score $score)
     {
-        Grade::destroy($grade->id);
+        Score::destroy($score->id);
         return redirect()->back();
     }
 }
