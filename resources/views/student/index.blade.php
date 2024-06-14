@@ -12,8 +12,8 @@
     @foreach ($students as $i => $student)
         <tr class="text-center">
             <td class="border p-2">{{ $i+1 }}</td>
-            <td class="border p-2">{{ $student['nama'] }}</td>
-            <td class="border p-2">{{ $student['kelas'] }}</td>
+            <td class="border p-2">{{ $student->nama }}</td>
+            <td class="border p-2">{{ $student->kelas }}</td>
             <td class="border p-2">
                 <a href="#"><img src="{{ asset('svg/show-icons.svg') }}" alt="show" class="inline-block"></a>
                 <a href="#"><img src="{{ asset('svg/delete-icons.svg') }}" alt="delete" class="inline-block"></a>
