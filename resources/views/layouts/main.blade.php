@@ -7,6 +7,7 @@
     <title>{{ $title }} | GradeMaster</title>
 </head>
 <body>
+    @include('partials.navbar')
     <div class="m-8">
         @yield('container')
     </div>
