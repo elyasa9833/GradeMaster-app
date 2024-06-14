@@ -15,7 +15,7 @@ class ScoreController extends Controller
     {
         return view('score.index', [
             'title' => 'Nilai',
-            'scores' => Score::get('user')->get()
+            'scores' => Score::with('user')->get()
         ]);
     }
 
@@ -36,17 +36,15 @@ class ScoreController extends Controller
     public function store(Request $request)
     {
         $inputScore = $request->validate([
-            'matematika' => 'required',
+            'user_id' => 'required',
+            'math' => 'required',
             'kimia' => 'required',
             'fisika' => 'required',
             'biologi' => 'required'
         ]);
-
-        $inputScore['user_id'] = auth()->user()->id;
-
         Score::create($inputScore);
 
-        return redirect()->back();
+        return redirect('/score');
     }
 
     /**
