@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// index route
 Route::get('/', function () {
     return view('welcome');
 });
+
+// student route
+Route::resource('/student', UserController::class);
+
+// grade route
+Route::resource('/grades', GradeController::class);
