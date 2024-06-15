@@ -15,8 +15,14 @@
             <td class="border p-2">{{ $student->nama }}</td>
             <td class="border p-2">{{ $student->kelas }}</td>
             <td class="border p-2">
-                <a href="#"><img src="{{ asset('svg/show-icons.svg') }}" alt="show" class="inline-block"></a>
-                <a href="#"><img src="{{ asset('svg/delete-icons.svg') }}" alt="delete" class="inline-block"></a>
+                <a href="{{ url('/student/'. $student->id) }}"><img src="{{ asset('svg/show-icons.svg') }}" alt="show" class="inline-block"></a>
+                
+                <form action="{{ url('/student/'. $student->id) }}" method="post" class="inline-block">
+                    @csrf @method('delete')
+                    <button type="submit">
+                        <img src="{{ asset('svg/delete-icons.svg') }}" alt="delete" class="inline-block">
+                    </button>
+                </form>
             </td>
         </tr>
         

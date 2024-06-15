@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Score;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -46,12 +47,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('student.show', [
+        return view('student.showStudent', [
             'title' => 'Show Student',
-            'user' => $user,
-            'nilai' => $user->grade()
+            'student' => User::where('id', $id)->first(),
+            'score' => Score::where('user_id', $id)->first(),
         ]);
     }
 
@@ -69,10 +70,8 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $updateStudent = $request->validate([
-            'fullname' => 'required|max:255',
-            'deskripsi' => 'required|max:255',
-            'phone_number' => 'required|max:255',
-            'photo_profile' => 'image|file|max:3072|nullable'
+            'nama' => 'required',
+            'kelas' => 'required',
         ]);
 
         User::where('id', $id)->update($updateStudent);
