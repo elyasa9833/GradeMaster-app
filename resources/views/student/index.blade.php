@@ -10,7 +10,7 @@
     </tr>
 
     @foreach ($students as $i => $student)
-        <tr class="text-center">
+        <tr>
             <td class="border p-2">{{ $i+1 }}</td>
             <td class="border p-2">{{ $student->nama }}</td>
             <td class="border p-2">{{ $student->kelas }}</td>

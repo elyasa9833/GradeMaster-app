@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,5 +23,5 @@ Route::get('/', function () {
 // student route
 Route::resource('/student', UserController::class);
 
-// grade route
+// score route
 Route::resource('/score', ScoreController::class);
