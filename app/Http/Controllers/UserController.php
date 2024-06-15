@@ -41,7 +41,7 @@ class UserController extends Controller
 
         User::create($createStudent);
 
-        return redirect('/student');
+        return redirect()->back();
     }
 
     /**
