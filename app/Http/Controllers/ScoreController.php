@@ -14,7 +14,7 @@ class ScoreController extends Controller
     public function index()
     {
         $scores = Score::with('user')
-        ->selectRaw('user_id, (math + kimia + fisika + biologi) / 4 as total_score')
+        ->selectRaw('id, user_id, (math + kimia + fisika + biologi) / 4 as total_score')
         ->orderBy('total_score', 'desc')
         ->get();
 
@@ -93,9 +93,10 @@ class ScoreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Score $score)
+    public function destroy($id)
     {
-        Score::destroy($score->id);
+        $score = Score::findOrFail($id);
+        $score->delete();
         return redirect()->back();
     }
 }
