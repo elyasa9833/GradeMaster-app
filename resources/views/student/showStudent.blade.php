@@ -6,7 +6,7 @@
 
     <h3>Nama: {{ $student->nama }}</h3>
     <h3>Kelas: {{ $student->kelas }}</h3>
-    <h3>Total Nilai: {{ $total_score ?? null }}</h3>
+    <h3>Total Nilai: {{ $score->total_score ?? null }}</h3>
 
     <table class="w-full border-collapse mt-7">
         <tr>
