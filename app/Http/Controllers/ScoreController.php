@@ -13,9 +13,14 @@ class ScoreController extends Controller
      */
     public function index()
     {
+        $scores = Score::with('user')
+        ->selectRaw('user_id, (math + kimia + fisika + biologi) / 4 as total_score')
+        ->orderBy('total_score', 'desc')
+        ->get();
+
         return view('score.index', [
             'title' => 'Nilai',
-            'scores' => Score::with('user')->get()
+            'scores' => $scores
         ]);
     }
 
@@ -24,9 +29,13 @@ class ScoreController extends Controller
      */
     public function create()
     {
+        $students = User::leftJoin('scores', 'users.id', '=', 'scores.user_id')
+        ->select('users.id', 'users.nama', 'scores.user_id as has_score')
+        ->get();
+
         return view('score.addScore', [
             'title' => 'Nilai',
-            'students' => User::all()
+            'students' => $students
         ]);
     }
 
@@ -36,11 +45,11 @@ class ScoreController extends Controller
     public function store(Request $request)
     {
         $inputScore = $request->validate([
-            'user_id' => 'required',
-            'math' => 'required',
-            'kimia' => 'required',
-            'fisika' => 'required',
-            'biologi' => 'required'
+            'user_id' => 'required|exists:users,id',
+            'math' => 'required|numeric',
+            'kimia' => 'required|numeric',
+            'fisika' => 'required|numeric',
+            'biologi' => 'required|numeric'
         ]);
         Score::create($inputScore);
 

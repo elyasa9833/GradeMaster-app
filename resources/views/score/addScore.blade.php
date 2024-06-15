@@ -9,7 +9,7 @@
             <option value="" hidden>Pilih siswa</option>
             
             @foreach ($students as $siswa)
-                <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
+                <option value="{{ $siswa->id }}" {{ $siswa->has_score ? 'disabled' :'' }}>{{ $siswa->nama }}</option>
             @endforeach
         </select>
 
