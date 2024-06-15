@@ -2,16 +2,11 @@
 
 @section('container')
 
-@php
-    $totalNilai = ($score->math + $score->kimia + $score->fisika + $score->biologi) /4
-    
-@endphp
-
 <div class="max-w-screen-lg mx-auto">
 
     <h3>Nama: {{ $student->nama }}</h3>
     <h3>Kelas: {{ $student->kelas }}</h3>
-    <h3>Total Nilai: {{ $totalNilai }}</h3>
+    <h3>Total Nilai: {{ $total_score ?? null }}</h3>
 
     <table class="w-full border-collapse mt-7">
         <tr>
@@ -22,10 +17,10 @@
         </tr>
 
         <tr class="text-center">
-            <td class="border p-2">{{ $score->math }}</td>
-            <td class="border p-2">{{ $score->kimia }}</td>
-            <td class="border p-2">{{ $score->fisika }}</td>
-            <td class="border p-2">{{ $score->biologi }}</td>
+            <td class="border p-2">{{ $student->score->math ?? null }}</td>
+            <td class="border p-2">{{ $student->score->kimia ?? null }}</td>
+            <td class="border p-2">{{ $student->score->fisika ?? null }}</td>
+            <td class="border p-2">{{ $student->score->biologi ?? null }}</td>
             
         </tr>
             

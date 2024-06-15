@@ -49,10 +49,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $score = Score::with('user')
+        ->selectRaw('(math + kimia + fisika + biologi) / 4 as total_score')
+        ->orderBy('total_score', 'desc');
+
         return view('student.showStudent', [
             'title' => 'Show Student',
             'student' => User::where('id', $id)->first(),
-            'score' => Score::where('user_id', $id)->first(),
+            'score' => $score->where('user_id', $id)->first()
         ]);
     }
 
