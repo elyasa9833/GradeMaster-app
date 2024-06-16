@@ -25,3 +25,4 @@ Route::resource('/student', UserController::class);
 
 // score route
 Route::resource('/score', ScoreController::class);
+Route::get('/all-score', [ScoreController::class, 'allScore']);

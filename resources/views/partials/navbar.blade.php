@@ -3,4 +3,5 @@
     <li class="float-left hover:bg-slate-700"><a class="block text-white text-center px-3 py-4 no-underline" href="/score/create">Tambah nilai</a></li>
     <li class="float-left hover:bg-slate-700"><a class="block text-white text-center px-3 py-4 no-underline" href="/student">Lihat siswa</a></li>
     <li class="float-left hover:bg-slate-700"><a class="block text-white text-center px-3 py-4 no-underline" href="/score">Lihat nilai</a></li>
+    <li class="float-left hover:bg-slate-700"><a class="block text-white text-center px-3 py-4 no-underline" href="/all-score">Nilai Berdasarkan Kelas</a></li>
 </ul>

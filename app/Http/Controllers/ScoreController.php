@@ -99,4 +99,27 @@ class ScoreController extends Controller
         $score->delete();
         return redirect()->back();
     }
+
+    public function allScore()
+    {
+        $students = Score::with('user')
+            ->selectRaw('user_id, users.kelas, users.nama as nama_siswa, ((math + kimia + fisika + biologi) /4) as total_nilai')
+            ->join('users', 'scores.user_id', '=', 'users.id')
+            ->orderBy('total_nilai', 'desc')
+            ->get();
+
+        // group student data by class
+        $studentsByClass = $students->groupBy('kelas');
+
+        // sum total class scores and sorted by highest score
+        $totalNilaiPerKelas = $studentsByClass->map(function ($students) {
+            return $students->sum('total_nilai');
+        })->sortDesc();
+
+        return view('score.allScore', [
+            'title' => 'Nilai',
+            'studentsByClass' => $studentsByClass,
+            'totalNilaiPerKelas' => $totalNilaiPerKelas
+        ]);
+    }
 }
