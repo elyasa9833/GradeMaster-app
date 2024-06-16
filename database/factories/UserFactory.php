@@ -23,12 +23,13 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $kelas = ['3A', '3B', '3C'];
+        $index = rand(0, count($kelas) - 1);
+        $rand_kelas = $kelas[$index];
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'nama' => $this->faker->name(),
+            'kelas' => $rand_kelas
         ];
     }
 
