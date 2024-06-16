@@ -7,7 +7,7 @@
         <th class="border p-2 text-left bg-slate-300">Nama</th>
         <th class="border p-2 text-left bg-slate-300">Kelas</th>
         <th class="border p-2 text-left bg-slate-300">Nilai</th>
-        <th class="border p-2 text-left bg-slate-300 w-20">Action</th>
+        <th class="border p-2 text-left bg-slate-300 w-24">Action</th>
     </tr>
 
     @foreach ($scores as $i => $score)
@@ -17,10 +17,12 @@
             <td class="border p-2">{{ $score->user->kelas }}</td>
             <td class="border p-2">{{ $score->total_score }}</td>
             <td class="border p-2 text-center">
+                <a href="{{ url('/score/'. $score->id .'/edit') }}"><img src="{{ asset('svg/edit-icons.svg') }}" alt="edit" title="edit" class="inline-block"></a>
+
                 <form action="{{ url('/score/'. $score->id) }}" method="post" class="inline-block">
                     @csrf @method('delete')
                     <button type="submit">
-                        <img src="{{ asset('svg/delete-icons.svg') }}" alt="delete" class="inline-block">
+                        <img src="{{ asset('svg/delete-icons.svg') }}" alt="delete" title="hapus" class="inline-block">
                     </button>
                 </form>
             </td>

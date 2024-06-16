@@ -67,10 +67,12 @@ class ScoreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Score $score)
+    public function edit($id)
     {
-        return view('score.edit', [
-            'title' => 'Nilai'
+        $score = Score::with('user')->where('id', $id)->first();
+        return view('score.editScore', [
+            'title' => 'Nilai',
+            'score' => $score
         ]);
     }
 
@@ -80,14 +82,14 @@ class ScoreController extends Controller
     public function update(Request $request, $id)
     {
         $updateScore = $request->validate([
-            'matematika' => 'required',
+            'math' => 'required',
             'kimia' => 'required',
             'fisika' => 'required',
             'biologi' => 'required'
         ]);
         Score::where('id', $id)->update($updateScore);
 
-        return redirect()->back();
+        return redirect('/score');
     }
 
     /**
