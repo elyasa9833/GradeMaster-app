@@ -63,15 +63,18 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        return view('student.editStudent', [
+            'title' => 'Show Student',
+            'student' => User::where('id', $id)->first()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $updateStudent = $request->validate([
             'nama' => 'required',
@@ -80,7 +83,7 @@ class UserController extends Controller
 
         User::where('id', $id)->update($updateStudent);
 
-        return redirect('/user/'. $id);
+        return redirect('/student/');
     }
 
     /**
