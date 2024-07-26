@@ -18,7 +18,7 @@
                 <a href="{{ url('/student/'. $student->id) }}"><img src="{{ asset('svg/show-icons.svg') }}" alt="show" title="lihat detail" class="inline-block"></a>
                 <a href="{{ url('/student/'. $student->id .'/edit') }}"><img src="{{ asset('svg/edit-icons.svg') }}" alt="edit" title="edit" class="inline-block"></a>
                 
-                <form action="{{ url('/student/'. $student->id) }}" method="post" class="inline-block">
+                <form action="{{ route('student.destroy', $student->id) }}" method="post" class="inline-block">
                     @csrf @method('delete')
                     <button type="submit">
                         <img src="{{ asset('svg/delete-icons.svg') }}" alt="delete" title="hapus" class="inline-block">

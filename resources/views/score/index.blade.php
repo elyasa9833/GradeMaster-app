@@ -19,7 +19,7 @@
             <td class="border p-2 text-center">
                 <a href="{{ url('/score/'. $score->id .'/edit') }}"><img src="{{ asset('svg/edit-icons.svg') }}" alt="edit" title="edit" class="inline-block"></a>
 
-                <form action="{{ url('/score/'. $score->id) }}" method="post" class="inline-block">
+                <form action="{{ route('score.destroy', $score->id) }}" method="post" class="inline-block">
                     @csrf @method('delete')
                     <button type="submit">
                         <img src="{{ asset('svg/delete-icons.svg') }}" alt="delete" title="hapus" class="inline-block">

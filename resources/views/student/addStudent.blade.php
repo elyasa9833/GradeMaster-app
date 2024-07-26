@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="bg-slate-100 p-5 max-w-lg mx-auto">
-    <form action="{{ url('/student') }}" method="post" >
+    <form action="{{ route('student.store') }}" method="post" >
         @csrf
         <label for="nama">Nama</label>
         <input type="text" id="nama" name="nama" class="w-full px-1 py-2 my-2 inline-block border rounded box-border" required>

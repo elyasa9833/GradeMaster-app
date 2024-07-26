@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="bg-slate-100 p-5 max-w-lg mx-auto">
-    <form action="{{ url('/student/'. $student->id) }}" method="post" >
+    <form action="{{ route('student.update', $student->id) }}" method="post" >
         @csrf @method('put')
         <label for="nama">Nama</label>
         <input type="text" id="nama" name="nama" value="{{ $student->nama }}" class="w-full px-1 py-2 my-2 inline-block border rounded box-border" required>
